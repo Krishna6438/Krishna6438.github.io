@@ -4,116 +4,233 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Krishna Sharma | GitHub Repositories</title>
+    <title>Krishna Sharma – Projects</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #0f172a;
-            color: #e5e7eb;
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --border: #e5e7eb;
+
+            --text-main: #020617;
+            --text-muted: #475569;
+
+            --primary: #2563eb;
+            --primary-soft: #eff6ff;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
+            font-family: "Inter", sans-serif;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
+        body {
+            background: var(--bg);
+            color: var(--text-main);
         }
 
-        h1 {
-            margin-bottom: 8px;
-        }
-
-        .repo-container {
-            max-width: 1000px;
+        /* ---------- LAYOUT ---------- */
+        .container {
+            max-width: 1200px;
             margin: auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            padding: 40px 24px 80px;
         }
 
-        .repo-card {
-            background: #020617;
-            padding: 18px;
+        /* ---------- HEADER ---------- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        header span {
+            color: var(--primary);
+        }
+
+        .search input {
+            padding: 10px 14px;
             border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-            transition: transform 0.2s ease;
+            border: 1px solid var(--border);
+            font-size: 14px;
+            min-width: 260px;
+            outline: none;
         }
 
-        .repo-card:hover {
-            transform: translateY(-5px);
+        /* ---------- HERO ---------- */
+        .hero {
+            max-width: 700px;
+            margin-bottom: 48px;
         }
 
-        .repo-card a {
-            color: #38bdf8;
+        .hero h2 {
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            margin-top: 12px;
+            color: var(--text-muted);
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        /* ---------- GRID ---------- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+            transform: translateY(-4px);
+        }
+
+        .card a {
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 600;
+            color: var(--text-main);
             text-decoration: none;
         }
 
-        .repo-card p {
-            font-size: 14px;
-            margin: 10px 0;
-            color: #cbd5f5;
+        .card a:hover {
+            color: var(--primary);
         }
 
-        .tags {
+        .card p {
+            margin: 10px 0 18px;
+            font-size: 14px;
+            color: var(--text-muted);
+            min-height: 42px;
+        }
+
+        .meta {
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .tag {
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 500;
             font-size: 12px;
-            opacity: 0.8;
         }
 
         footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 14px;
-            opacity: 0.7;
+            margin-top: 80px;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 700px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .hero h2 {
+                font-size: 30px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>👋 Krishna Sharma</h1>
-        <p>All my GitHub repositories in one place</p>
-    </header>
+    <div class="container">
 
-    <section class="repo-container" id="repos">
-        <p>Loading repositories...</p>
-    </section>
+        <!-- HEADER -->
+        <header>
+            <h1>Krishna <span>Sharma</span></h1>
+            <div class="search">
+                <input type="text" id="search" placeholder="Search repositories…" />
+            </div>
+        </header>
 
-    <footer>
-        © 2026 • Powered by GitHub Pages
-    </footer>
+        <!-- HERO -->
+        <section class="hero">
+            <h2>Projects & Open-Source Work</h2>
+            <p>
+                A curated collection of my GitHub repositories — ranging from
+                full-stack applications and system projects to experiments and learning work.
+            </p>
+        </section>
+
+        <!-- GRID -->
+        <section class="grid" id="repoGrid">
+            <p>Loading repositories…</p>
+        </section>
+
+        <footer>
+            © 2026 Krishna Sharma · Built with GitHub Pages
+        </footer>
+
+    </div>
 
     <script>
         const username = "Krishna6438";
-        const repoContainer = document.getElementById("repos");
+        const grid = document.getElementById("repoGrid");
+        const search = document.getElementById("search");
+        let repos = [];
 
-        fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`)
+        fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`)
             .then(res => res.json())
-            .then(repos => {
-                repoContainer.innerHTML = "";
-
-                repos.forEach(repo => {
-                    const card = document.createElement("div");
-                    card.className = "repo-card";
-
-                    card.innerHTML = `
-          <a href="${repo.html_url}" target="_blank">${repo.name}</a>
-          <p>${repo.description || "No description provided."}</p>
-          <div class="tags">
-            ⭐ ${repo.stargazers_count} • 🍴 ${repo.forks_count} • ${repo.language || "Unknown"}
-          </div>
-        `;
-
-                    repoContainer.appendChild(card);
-                });
-            })
-            .catch(err => {
-                repoContainer.innerHTML = "<p>Failed to load repositories.</p>";
-                console.error(err);
+            .then(data => {
+                repos = data;
+                render(repos);
             });
+
+        function render(list) {
+            grid.innerHTML = "";
+            list.forEach(r => {
+                const div = document.createElement("div");
+                div.className = "card";
+                div.innerHTML = `
+        <a href="${r.html_url}" target="_blank">${r.name}</a>
+        <p>${r.description || "No description available."}</p>
+        <div class="meta">
+          <span>⭐ ${r.stargazers_count}</span>
+          <span>🍴 ${r.forks_count}</span>
+          <span class="tag">${r.language || "General"}</span>
+        </div>
+      `;
+                grid.appendChild(div);
+            });
+        }
+
+        search.addEventListener("input", e => {
+            const val = e.target.value.toLowerCase();
+            render(
+                repos.filter(r =>
+                    r.name.toLowerCase().includes(val) ||
+                    (r.description && r.description.toLowerCase().includes(val))
+                )
+            );
+        });
     </script>
 
 </body>
